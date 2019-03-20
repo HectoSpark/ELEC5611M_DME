@@ -376,7 +376,8 @@ int main(int argc, char *argv[])
 			
 		}
 		// Find the largest histogram entry and calculate the scaling factor:
-		float maxPixelHigh = 200;
+		int startPixelheight = 120;
+		float maxPixelHigh = 360;
 		//Find Largest Histogram value for scalability
 		for (i = 0; i <= 255; i++) {
 			if (histogram[i] > largestHistoEntry) {
@@ -392,7 +393,7 @@ int main(int argc, char *argv[])
 
 		// Main part 2: Display the histogram:
 		//Set background
-		int pixelCounter = 0;
+		int pixelCounter = (startPixelheight * colsPadded);
 		//find background colour and front colour
 		unsigned char BackColour = FindEntryNearestColour(0, 0, 0, coloursUsed, colourPalette);
 		unsigned char HistoColour = FindEntryNearestColour(255, 255, 0, coloursUsed, colourPalette);
@@ -406,7 +407,7 @@ int main(int argc, char *argv[])
 			pixelCounter = (pixelCounter - 256) + colsPadded;
 		}
 		//Set pixels
-		pixelCounter = 0; //reset pixel counter
+		pixelCounter = (startPixelheight * colsPadded); //reset pixel counter
 		//Go through pixels of box and set to yellow if equal to histo value
 		for (int x = 0; x <= maxPixelHigh; x++) {
 			for (int y = 0; y <= 255; y++) {
